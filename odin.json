@@ -1,0 +1,34 @@
+{
+   "projectName": "firstProject",
+   "m3Url": "https://m3prdxyz.m3.xyz.inforcloudsuite.com",
+   "portalUrl": "https://mingle-xyz-portal.xyz.inforcloudsuite.com",
+   "proxy": {
+      "/m3api-rest": {
+         "target": "https://m3prdxyz.m3.xyz.inforcloudsuite.com",
+         "secure": false,
+         "changeOrigin": true,
+         "logLevel": "debug"
+      },
+      "/mne": {
+         "target": "https://m3prdxyz.m3.xyz.inforcloudsuite.com",
+         "secure": false,
+         "changeOrigin": true,
+         "logLevel": "debug"
+      },
+      "/ca": {
+         "target": "https://m3prdxyz.m3.xyz.inforcloudsuite.com",
+         "secure": false,
+         "changeOrigin": true,
+         "logLevel": "debug"
+      },
+      "/ODIN_DEV_TENANT": {
+         "target": "ODIN_ION_PROXY_TARGET",
+         "secure": false,
+         "changeOrigin": true,
+         "pathRewrite": {
+            "^/ODIN_DEV_TENANT": "/ODIN_ION_PROXY_TENANT"
+         },
+         "logLevel": "debug"
+      }
+   }
+}
