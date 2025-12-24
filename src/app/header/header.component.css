@@ -1,0 +1,61 @@
+.commande-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background-color: #eafefc;
+  border-bottom: 1px solid #d8d8d8;
+}
+
+.header-left h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.subtitle {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.header-center {
+  display: flex;
+  gap: 32px;
+}
+
+.info-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-block .label {
+  font-size: 11px;
+  color: #6b7280;
+  text-transform: uppercase;
+}
+
+.info-block .value {
+  font-size: 14px;
+  font-weight: 500;
+  color: #111827;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+/* Badge statut */
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status-badge.draft {
+  background-color: #eef2ff;
+  color: #3730a3;
+}

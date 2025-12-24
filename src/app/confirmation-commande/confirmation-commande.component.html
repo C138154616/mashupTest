@@ -1,0 +1,42 @@
+<div class="form-grid">
+  <!-- Client (grisé) -->
+  <div class="form-field">
+    <label>Client</label>
+    <input soho-input [value]="client?.cuno + ' - ' + client?.name" readonly />
+  </div>
+
+  <!-- Date de livraison demandée -->
+  <div class="form-field">
+    <label>Date de livraison demandée</label>
+    <input
+      soho-input
+      type="date"
+      [(ngModel)]="deliveryDate"
+      [min]="minDeliveryDate"
+      required
+    />
+    <br />
+  </div>
+
+  <!-- N° commande achat client -->
+  <div class="form-field">
+    <label>N° Commande Achat Client</label>
+    <input
+      soho-input
+      [(ngModel)]="customerOrderNo"
+      (blur)="emitHeader()"
+      placeholder="Référence client"
+    />
+  </div>
+
+  <!-- Commentaire (non obligatoire) -->
+  <div class="form-field form-field-full">
+    <label>Commentaire</label>
+    <textarea
+      soho-textarea
+      [(ngModel)]="comment"
+      (blur)="emitHeader()"
+      placeholder="Commentaire (optionnel)"
+    ></textarea>
+  </div>
+</div>

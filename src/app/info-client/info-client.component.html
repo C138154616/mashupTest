@@ -1,0 +1,53 @@
+<div class="search-row">
+  <div class="search-box">
+    <label>Recherche du client</label>
+    <input
+      soho-input
+      [(ngModel)]="clientCode"
+      (blur)="loadClient()"
+      placeholder="Code client"
+    />
+  </div>
+</div>
+
+<div class="form-grid">
+  <div class="form-field">
+    <label>Code Client</label>
+    <input soho-input [value]="client?.cuno || ''" readonly />
+  </div>
+
+  <div class="form-field">
+    <label>Téléphone</label>
+    <input soho-input [value]="client?.phone || ''" readonly />
+  </div>
+
+  <div class="form-field">
+    <label>Adresse</label>
+    <input soho-input [value]="client?.address || ''" readonly />
+  </div>
+
+  <div class="form-field">
+    <label>Code postal / Ville</label>
+    <input soho-input [value]="client?.postalCity || ''" readonly />
+  </div>
+
+  <div class="form-field">
+    <label>Pays</label>
+    <input soho-input [value]="client?.country || ''" readonly />
+  </div>
+
+  <div class="form-field">
+    <label>Code Assortiment</label>
+    <input soho-input [value]="client?.assortment || ''" readonly />
+  </div>
+
+  <div class="form-field">
+    <label>Niveau 1:</label>
+    <input soho-input [value]="client?.niveau1 || ''" readonly />
+  </div>
+
+  <div class="form-field">
+    <label>Niveau 2:</label>
+    <input soho-input [value]="client?.niveau2 || ''" readonly />
+  </div>
+</div>

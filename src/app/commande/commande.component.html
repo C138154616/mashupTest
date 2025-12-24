@@ -1,0 +1,50 @@
+<div class="row top-padding">
+  <div class="twelve columns demo" role="main">
+    <soho-toolbar>
+      <soho-toolbar-title>
+        <span soho-toolbar-section-title></span>
+      </soho-toolbar-title>
+      <soho-toolbar-button-set>
+        <button soho-button="primary" (click)="showPopup = true">
+          Historique de vente
+        </button>
+        <button soho-button="primary" (click)="showPopupArticle = true">
+          Ajouter ligne de commande
+        </button>
+      </soho-toolbar-button-set>
+    </soho-toolbar>
+
+    <div soho-datagrid *ngIf="gridOptions" [gridOptions]="gridOptions"></div>
+  </div>
+</div>
+
+<!-- Popup / modal simple -->
+<div *ngIf="showPopup" class="popup-overlay">
+  <div class="popup-content">
+    <h2><strong>Historique de vente</strong></h2>
+    <br />
+    <app-historique-vente [clientCode]="clientCode"></app-historique-vente>
+
+    <div class="popup-footer">
+      <button soho-button="secondary" (click)="closePopup()">Annuler</button>
+      <button soho-button="primary" (click)="confirmPopup()">Confirmer</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="showPopupArticle" class="popup-overlay">
+  <div class="popup-content">
+    <h2><strong>Liste des articles</strong></h2>
+    <br />
+    <app-list-article [clientCode]="clientCode"></app-list-article>
+
+    <div class="popup-footer">
+      <button soho-button="secondary" (click)="closePopupArticle()">
+        Annuler
+      </button>
+      <button soho-button="primary" (click)="confirmPopupArticle()">
+        Ajouter la ligne de commande
+      </button>
+    </div>
+  </div>
+</div>

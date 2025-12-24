@@ -1,0 +1,153 @@
+/* ==============================
+   GLOBAL CONTAINER
+   ============================== */
+.wizard {
+  width: 100%;
+  padding: 24px 32px;
+  box-sizing: border-box;
+}
+
+/* ==============================
+   STEPPER HEADER
+   ============================== */
+.wizard-steps {
+  display: flex;
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+/* ==============================
+   SINGLE STEP
+   ============================== */
+.wizard-step {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column; /* circle au-dessus du titre */
+  align-items: center;
+  text-align: center;
+}
+
+/* ==============================
+   CIRCLE
+   ============================== */
+.step-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #d8d8d8;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+/* ==============================
+   LABEL
+   ============================== */
+.step-label {
+  margin-top: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #4a4a4a;
+  white-space: nowrap;
+}
+
+/* ==============================
+   LINE BETWEEN STEPS
+   ============================== */
+.step-line {
+  position: absolute;
+  top: 18px; /* centré verticalement sur le cercle */
+  left: 50%;
+  width: 100%;
+  height: 3px;
+  background-color: #d8d8d8;
+  z-index: 1;
+}
+
+/* Ne pas afficher la ligne sur le dernier step */
+.wizard-step:last-child .step-line {
+  display: none;
+}
+
+/* ==============================
+   ACTIVE STEP
+   ============================== */
+.wizard-step.active .step-circle {
+  background-color: #0072ed;
+}
+
+.wizard-step.active .step-label {
+  color: #0072ed;
+}
+
+/* ==============================
+   DONE STEP
+   ============================== */
+.wizard-step.done .step-circle {
+  background-color: #0072ed;
+}
+
+.wizard-step.done .step-label {
+  color: #0072ed;
+}
+
+.wizard-step.done .step-line {
+  background-color: #0072ed;
+}
+
+/* ==============================
+   CONTENT
+   ============================== */
+.wizard-content {
+  margin-top: 24px;
+}
+
+/* ==============================
+   ACTION BUTTONS
+   ============================== */
+.wizard-actions {
+  margin-top: 32px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ==============================
+   RESPONSIVE
+   ============================== */
+@media (max-width: 768px) {
+  .step-label {
+    font-size: 13px;
+  }
+
+  .step-circle {
+    width: 30px;
+    height: 30px;
+    font-size: 13px;
+  }
+
+  .step-line {
+    height: 2px;
+  }
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+.app-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-content {
+  flex: 1;
+  padding: 16px 24px;
+}

@@ -1,0 +1,62 @@
+<div class="app-layout">
+  <app-header></app-header>
+
+  <main class="app-content">
+    <div class="wizard">
+      <!-- STEPPER -->
+      <div class="wizard-steps">
+        <div
+          class="wizard-step"
+          *ngFor="let step of steps; let i = index"
+          [class.active]="i === currentStep"
+          [class.done]="i < currentStep"
+        >
+          <div class="step-circle">
+            <span *ngIf="i >= currentStep">{{ i + 1 }}</span>
+            <span *ngIf="i < currentStep">✔</span>
+          </div>
+
+          <div class="step-label">{{ step }}</div>
+          <div class="step-line" *ngIf="i < steps.length - 1"></div>
+        </div>
+      </div>
+
+      <div class="wizard-content">
+        <ng-container [ngSwitch]="currentStep">
+          <div *ngSwitchCase="0">
+            <app-info-client
+              [clientInfo]="selectedClient"
+              (clientSelected)="onClientSelected($event)"
+            ></app-info-client>
+          </div>
+
+          <div *ngSwitchCase="1">
+            <app-commande [clientCode]="selectedClient?.cuno"></app-commande>
+          </div>
+
+          <div *ngSwitchCase="2">
+            <app-confirmation-commande
+              [client]="selectedClient"
+              [header]="commandeHeader"
+            ></app-confirmation-commande>
+          </div>
+        </ng-container>
+      </div>
+
+      <div class="wizard-actions">
+        <button
+          soho-button="secondary"
+          (click)="previous()"
+          [disabled]="currentStep === 0"
+        >
+          Précédent
+        </button>
+        <button soho-button="primary" (click)="next()">
+          {{ currentStep === steps.length - 1 ? "Terminer" : "Suivant" }}
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <app-footer></app-footer>
+</div>
