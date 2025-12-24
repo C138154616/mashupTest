@@ -2,6 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MIService, UserService } from '@infor-up/m3-odin-angular';
 import { SohoDataGridComponent, SohoModalComponent } from 'ids-enterprise-ng';
 import { ClientInfo } from '../models/ClientInfo';
+import { DateM3Pipe } from '../shared/pipes/date-m3.pipe';
 
 @Component({
   selector: 'app-historique-vente',
@@ -17,8 +18,10 @@ export class HistoriqueVenteComponent {
   totalItems = 0;
   pageSize = 10;
   currentPage = 1;
+
   constructor(private miService: MIService, private userService: UserService) {}
   ngOnInit(): void {
+    const datePipe = new DateM3Pipe();
     this.gridOptions = {
       columns: [
         {
@@ -29,8 +32,22 @@ export class HistoriqueVenteComponent {
           formatter: Soho.Formatters.SelectionCheckbox,
           align: 'center',
         },
-        { id: 'ORNO', name: 'Commande', field: 'ORNO', sortable: true },
-        { id: 'ORDT', name: 'Date', field: 'ORDT', sortable: true },
+        { id: 'ORNO', name: 'N°Commande', field: 'ORNO', sortable: true },
+        {
+          id: 'ORDT',
+          name: 'Date',
+          field: 'ORDT',
+          sortable: true,
+          formatter: (
+            row: any,
+            cell: any,
+            value: any,
+            columnDef: any,
+            dataContext: any
+          ) => {
+            return datePipe.transform(value);
+          },
+        },
         { id: 'STAT', name: 'Statut', field: 'ORST', sortable: true },
         { id: 'CUOR', name: 'Référence client', field: 'CUNO', sortable: true },
         { id: 'WHLO', name: 'Dépôt', field: 'FACI', sortable: true },

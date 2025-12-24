@@ -1,6 +1,7 @@
 import { Component, ViewChild, Input, OnInit } from '@angular/core';
 // @ts-ignore
 import { SohoDataGridComponent } from 'ids-enterprise-ng';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-commande',
@@ -17,6 +18,7 @@ export class CommandeComponent implements OnInit {
 
   gridOptions: any = null;
   rowCounter = 1;
+  faTrashAlt = faTrashAlt;
 
   ngOnInit(): void {
     this.gridOptions = {
@@ -79,15 +81,15 @@ export class CommandeComponent implements OnInit {
           field: 'action',
           width: 80,
           sortable: false,
-          formatter: (
-            _row: any,
-            _cell: any,
-            _value: any,
-            _column: any,
-            grid: any,
-            row: any
-          ) => {
-            return `<button soho-button="icon" class="delete-row" data-id="${row.lineNo}"><i class="icon icon-delete"></i></button>`;
+          formatter: (_row, _cell, _value, _column, grid, row) => {
+            return `  <div style="text-align:center; cursor:pointer;">
+                     <span class="delete-icon" (click)="onDeleteRow(${row.lineNo})"
+                           data-id="${row.lineNo}"
+                           style="color:red; font-size:18px;"
+                           title="Supprimer cette ligne">
+                     🗑️
+                     </span>
+                  </div>`;
           },
         },
       ],
@@ -100,28 +102,11 @@ export class CommandeComponent implements OnInit {
     };
   }
 
-  closePopup() {
-    this.showPopup = false;
-  }
-
-  confirmPopup() {
-    console.log('Action confirmée !');
-    this.showPopup = false;
-  }
-
-  closePopupArticle() {
-    this.showPopupArticle = false;
-  }
-
-  confirmPopupArticle() {
-    console.log('Action confirmée !');
-    this.showPopupArticle = false;
-  }
-
   addEmptyRow() {
     const newRow = {
       lineNo: this.rowCounter++,
       article: '',
+      description: '',
       quantity: 0,
       unit: '',
       totalPrice: 0,
@@ -130,7 +115,6 @@ export class CommandeComponent implements OnInit {
     this.sohoDataGridComponent?.addRow(newRow, 'bottom');
   }
 
-  // Gestion de la suppression depuis le bouton Action
   onDeleteRow(lineNo: number) {
     const index = this.sohoDataGridComponent?.dataset.findIndex(
       (row: any) => row.lineNo === lineNo
@@ -141,14 +125,18 @@ export class CommandeComponent implements OnInit {
     }
   }
 
-  ngAfterViewInit() {
-    // Écoute click sur le bouton delete dans la colonne Action
-    const gridElement = this.sohoDataGridComponent?.['element'];
-    if (gridElement) {
-      $(gridElement).on('click', '.delete-row', (e: any) => {
-        const lineNo = parseInt($(e.currentTarget).data('id'), 10);
-        this.onDeleteRow(lineNo);
-      });
-    }
+  closePopup() {
+    this.showPopup = false;
+  }
+  confirmPopup() {
+    console.log('Action confirmée !');
+    this.showPopup = false;
+  }
+  closePopupArticle() {
+    this.showPopupArticle = false;
+  }
+  confirmPopupArticle() {
+    console.log('Action confirmée !');
+    this.showPopupArticle = false;
   }
 }

@@ -8,7 +8,11 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { Log } from '@infor-up/m3-odin';
 import { M3OdinModule } from '@infor-up/m3-odin-angular';
-import { SohoComponentsModule } from 'ids-enterprise-ng'; // TODO Consider only importing individual SoHo modules in production
+import {
+  SohoButtonModule,
+  SohoComponentsModule,
+  SohoIconModule,
+} from 'ids-enterprise-ng'; // TODO Consider only importing individual SoHo modules in production
 import { AppComponent } from './app.component';
 import { StepprsComponent } from './stepprs/stepprs.component';
 import { InfoClientComponent } from './info-client/info-client.component';
@@ -19,6 +23,8 @@ import { ListArticleComponent } from './list-article/list-article.component';
 import { ConfirmationCommandeComponent } from './confirmation-commande/confirmation-commande.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { DateM3Pipe } from './shared/pipes/date-m3.pipe';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -31,6 +37,7 @@ import { FooterComponent } from './footer/footer.component';
     ConfirmationCommandeComponent,
     HeaderComponent,
     FooterComponent,
+    DateM3Pipe,
   ],
   imports: [
     BrowserModule,
@@ -38,6 +45,7 @@ import { FooterComponent } from './footer/footer.component';
     SohoComponentsModule,
     M3OdinModule,
     SohoAutoCompleteModule,
+    FontAwesomeModule,
   ],
   providers: [
     {
